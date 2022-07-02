@@ -1,0 +1,42 @@
+﻿@model Driving.Models.Entity.WidgetCategory
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Administrator/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="content-wrapper">
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">WidgetCategory</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <!-- form start -->
+                        <form method="post" action="/Administrator/AdminWidgetCategory/Edit" role="form">
+                            <input type="hidden" value="@Model.Id" name="Id" />
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label>Title</label>
+                                    <input name="Title" type="text" value="@Model.Title" class="form-control" placeholder="Enter Title">
+                                </div>
+                                <div class="form-group">
+                                    <label>Icon</label>
+                                    <input name="Icon" type="text" value="@Model.Icon" class="form-control" placeholder="Enter Icon">
+                                </div>
+                            </div>
+                            <!-- /.card-body -->
+
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+

@@ -1,0 +1,98 @@
+﻿@model System.Collections.Generic.IEnumerable<Driving.Model.Entity.NewsEntity>
+@{
+    ViewBag.Title = "News";
+    Layout = "~/Views/Shared/" + ViewBag.Setting.Layout;
+}
+
+<!-- Breadcrumb Begin -->
+<div class="breadcrumb-option">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb__links">
+                    <a href="/Home/Index"><i class="fa fa-home"></i> Home</a>
+                    <span>News</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Breadcrumb End -->
+<!-- Blog Section Begin -->
+<section class="blog spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-title center-title">
+                    <span>Latest update</span>
+                    <h2>Latest news</h2>
+                </div>
+                <div class="blog__large">
+                    <div class="blog__large__pic">
+                        <img src="@Model.First().PictureURL" alt="">
+                    </div>
+                    <div class="blog__large__text">
+                        <span>@Model.First().NewsCategory.Title</span>
+                        <h4>@Model.First().Ttile</h4>
+                        <ul>
+                            <li>@Model.First().CreateDate.Date</li>
+                            <li>03 Comment</li>
+                        </ul>
+                        @*<p>
+                            @Model.First().Description
+                        </p>*@
+                        <a href="/Home/NewsInfo/@Model.First().Id">Read more</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+          
+
+            @foreach (var item in Model.Skip(1))
+            {
+                <div class="col-lg-4 col-md-4 col-sm-6">
+                    <div class="blog__item">
+                        <div class="blog__item__pic">
+                            <img src="@item.PictureURL" alt="@item.Ttile">
+                        </div>
+                        <div class="blog__item__text">
+                            <span>@item.NewsCategory.Title</span>
+                            <h5><a href="/Home/NewsInfo/@item.Id">@item.Ttile</a></h5>
+                            <ul>
+                                <li>@item.CreateDate.Date</li>
+                                <li>03 Comment</li>
+                            </ul>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur do eiusmod tempor incididunt ut labore et dolore
+                                magna...
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            }
+            <div class="col-lg-12">
+                <div class="pagination__option">
+                    @if (ViewBag.Id == 0)
+                    {
+                        for (int i = 1; i <= ViewBag.Counter; i++)
+                        {
+
+                            <a href="/Home/News/?Pages=@i">@i</a>
+                        }
+                    }
+                    else
+                    {
+                        for (int i = 1; i <= ViewBag.Counter; i++)
+                        {
+
+                            <a href="/Home/News/@ViewBag.Id?Pages=@i">@i</a>
+                        }
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Blog Section End -->

@@ -1,0 +1,151 @@
+﻿@model Driving.Model.Entity.NewsEntity
+@{
+    ViewBag.Title = "NewsInfo";
+    Layout = "~/Views/Shared/" + ViewBag.Setting.Layout;
+}
+
+<!-- Blog Hero Section Begin -->
+<section class="blog-hero set-bg" data-setbg="@Model.PictureURL">
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <div class="col-lg-8">
+                <div class="blog__hero__text">
+                    <span>@Model.NewsCategory.Title</span>
+                    <h2>@Model.Ttile</h2>
+                    <ul>
+                        <li>@Model.CreateDate.Date</li>
+                        <li><i class="fa fa-eye"></i>@Model.NewsVisits.Count</li>
+                        <li><i id="Likebtn" class="fa fa-heart-o"></i><span id="likecount">@Model.NewsLikes.Count</span></li>
+                        <li>@Model.NewsComments.Count Comment</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Blog Hero Section End -->
+<!-- Blog Details Section Begin -->
+<div class="blog-details">
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <div class="col-lg-8">
+                <div class="blog__details__content">
+                    @Html.Raw(Model.Description)
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="blog-details">
+    <div  class="container">
+        <div  class="row d-flex justify-content-center">
+            <div  class="col-lg-8">
+                <div id="comments" class="blog__details__content">
+                    <h5>Your Comments:</h5>
+                    @foreach (var item in Model.NewsComments.ToList())
+                    {
+                        <div class="blog__item">
+
+                        </div>
+                        <div class="blog__item__text">
+                            <span>@item.Title</span>
+                            <h5>@item.Description</h5>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<input type="hidden" id="MyId" value="@Model.Id" />
+<div class="blog-details">
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <div class="col-lg-8">
+                <div class="blog__details__content">
+                    <input value="" id="txtTitle" type="text" class="form-control" placeholder="Enter Title" />
+                    <textarea value="" id="txtDescription" type="text" class="form-control" placeholder="Enter your Message here"></textarea>
+                    <input value="send" id="btnSend" type="button" class="btn btn-primary" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Blog Details Section End -->
+<!-- Recent Blog Section Begin -->
+<section class="recent-blog">
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <div class="col-lg-8">
+                <div class="section-title center-title">
+                    <h2>Recent posts</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row d-flex justify-content-center">
+            <div class="col-lg-8">
+                <div class="row">
+                    @foreach (var item in ViewBag.LastPosts)
+                    {
+                        <div class="col-lg-4 col-md-4 col-sm-6">
+                            <div class="blog__item">
+                                <div class="blog__item__pic">
+                                    <img src="@item.PictureURL" alt="@item.Ttile">
+                                </div>
+                                <div class="blog__item__text">
+                                    <span>@item.NewsCategory.Title</span>
+                                    <h5><a href="/Home/NewsInfo/@item.Id">@item.Ttile</a></h5>
+                                    <ul>
+                                        <li>@item.CreateDate.Date</li>
+                                        <li>03 Comment</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Recent Blog Section End -->
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $('#btnSend').click(function () {
+                //alert('salam');
+                $.ajax({
+                    url: '/Home/SendComment',
+                    type: 'POST',
+                    data: { id: $('#MyId').val(), title: $('#txtTitle').val(), description: $('#txtDescription').val() },
+                    success: function (result) {
+                        $('#comments').append('<div class="blog__item"></div><div class="blog__item__text"><span>' + result.Title + '</span><h5>' + result.Description + '</h5></div>')
+                        $('#txtTitle').val('');
+                        $('#txtDescription').val('');
+                    },
+                    error: function () {
+                        alert('we have an error');
+                    }
+                });
+            });
+
+            $('#Likebtn').click(function () {
+                if ($('#Likebtn').hasClass('fa-heart-o')) {
+                    $.ajax({
+                        type: 'POST',
+                        url: '/Home/LikeNews/',
+                        data: { id: $('#MyId').val() },
+                        success: function (counter) {
+                            $('#likecount').text(counter);
+                            $('#Likebtn').removeClass('fa-heart-o');
+                            $('#Likebtn').addClass('fa-heart');
+                        },
+                        error: function () { alert('we have an error'); }
+                    });
+                }
+            });
+        });
+    </script>
+}
+

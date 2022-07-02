@@ -1,0 +1,47 @@
+﻿@model Driving.Model.Entity.NewsCategoryEntity
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Administrator/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="content-wrapper">
+
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-md-12">
+                    <!-- general form elements -->
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">Course</h3>
+                        </div>
+                        <input type="hidden" name="Id" value="@Model.Id"/>
+                        <!-- /.card-header -->
+                        <!-- form start -->
+                        <form method="post" action="/Administrator/AdminNewsCategory/Edit" role="form">
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Title</label>
+                                    <input value="@Model.Title" name="Title" type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Title">
+                                </div>
+                                @Html.HiddenFor(model => model.Id)
+                            </div>
+                            <!-- /.card-body -->
+
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- /.card -->
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</div>
+

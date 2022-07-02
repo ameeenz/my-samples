@@ -1,0 +1,90 @@
+﻿@model IEnumerable<Driving.Model.Entity.CourseEntity>
+@{
+    ViewBag.Title = "Courses";
+    Layout = "~/Views/Shared/" + ViewBag.Setting.Layout;
+}
+
+<!-- Breadcrumb Begin -->
+<div class="breadcrumb-option">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb__links">
+                    <a href="/Home/Index"><i class="fa fa-home"></i> Home</a>
+                    <span>Courses</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Breadcrumb End -->
+<!-- Application Form Section Begin -->
+<section class="application-form courses--page spad">
+    <div class="container">
+        <div class="application__form__content">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title center-title">
+                        <span>Giving Best Options For You</span>
+                        <h2>Application Form</h2>
+                    </div>
+                </div>
+            </div>
+            <form action="/Home/Courses" method="post">
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 col-sm-6">
+                        <input type="text" name="Title" placeholder="Your Item">
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-6">
+                        <input type="number" name="Price" placeholder="Your Price">
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-6">
+                        <input type="text" name="Description" placeholder="Your Description">
+                    </div>
+                    
+                    <div class="col-lg-12 text-center">
+                        <button type="submit" class="site-btn second-bg">Search</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+<!-- Application Form Section End -->
+<!-- Courses Section Begin -->
+<section class="courses spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7 col-md-7 col-sm-7">
+                <div class="section-title">
+                    <span>Our Great Team</span>
+                    <h2>Our Instructors</h2>
+                </div>
+            </div>
+            <div class="col-lg-5 col-md-5 col-sm-5">
+                <div class="courses__all">
+                    <a href="/Home/Courses" class="primary-btn second-bg">View all</a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+          @foreach (var item in Model)
+          {
+
+            <div class="col-lg-4 col-md-4 col-sm-6">
+                <div class="course__item">
+                    <img src="@item.PictureURL" alt="@item.Ttile">
+                    <h5>@item.Ttile</h5>
+                    <h4>$ @item.Price</h4>
+                    <p>
+                        @item.Description
+                    </p>
+                    <a href="/Home/CourseInfo/@item.Id">View detail</a>
+                </div>
+            </div>
+          }
+           
+        </div>
+    </div>
+</section>
+<!-- Courses Section End -->

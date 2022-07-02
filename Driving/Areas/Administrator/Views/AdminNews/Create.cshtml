@@ -1,0 +1,84 @@
+﻿
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Administrator/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="content-wrapper">
+
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-md-12">
+                    <!-- general form elements -->
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">News</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <!-- form start -->
+                        <form enctype="multipart/form-data" method="post" action="/Administrator/AdminNews/Create" role="form">
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Title</label>
+                                    <input name="Ttile" type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Title">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Description</label>
+                                    
+                                        <div class="mb-3">
+                                            <textarea class="textarea" name="Description" placeholder="Enter Description"
+                                                      style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                                        </div>
+                                        
+                                    
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Author</label>
+                                    <input type="text" name="Author" class="form-control" id="exampleInputEmail1" placeholder="Enter Author">
+                                </div>
+                                <div class="form-group">
+                                    <label >News Category</label>
+                                    <select class="form-control" name="NewsCategory_Id">
+                                       @foreach (var item in ViewBag.SelectList)
+                                       {
+
+                                        <option value="@item.Id">@item.Title</option>
+                                       }
+                                        
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputFile">Picture</label>
+                                    <div class="input-group">
+                                        <div class="custom-file">
+                                            <input type="file" name="PictureFile" class="custom-file-input" id="exampleInputFile">
+                                            <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                                        </div>
+                                        <div class="input-group-append">
+                                            <span class="input-group-text" id="">Upload</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <!-- /.card-body -->
+
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- /.card -->
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</div>
+

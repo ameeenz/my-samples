@@ -1,0 +1,97 @@
+﻿@model Driving.Models.Entity.ApplicationUser
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Administrator/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="content-wrapper">
+
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-md-12">
+                    <!-- general form elements -->
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">User</h3>
+                        </div>
+                        <div class="alert-default-danger">
+                            <h3>@ViewBag.Message</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <!-- form start -->
+                        <form enctype="multipart/form-data" method="post" action="/Administrator/AdminApplicationUser/Edit" role="form">
+                            <input type="hidden" name="Id" value="@Model.Id" />
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Name</label>
+                                    <input name="Name" value="@Model.Name" type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Family</label>
+                                    <input name="Family" value="@Model.Family" type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Family">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Email</label>
+                                    <input name="Email" value="@Model.Email" type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Email">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">UserName</label>
+                                    <input name="UserName" value="@Model.UserName" type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter UserName">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Password</label>
+                                    <input name="Password" type="password" class="form-control" id="exampleInputEmail1" placeholder="Enter Password">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">RePassword</label>
+                                    <input name="RePassword" type="password" class="form-control" id="exampleInputEmail1" placeholder="Enter Re-Password">
+                                </div>
+                                <div class="form-group">
+                                    <label>Roles</label>
+                                    <select class="form-control" name="RolesName">
+                                        @foreach (var item in ViewBag.Roles)
+                                        {
+
+                                            <option value="@item.Name">@item.Name</option>
+                                        }
+
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputFile">Picture</label>
+                                    <div class="input-group">
+                                        <div class="custom-file">
+                                            <input type="file" name="PictureFile" class="custom-file-input" id="exampleInputFile">
+                                            <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                                        </div>
+                                        <div class="input-group-append">
+                                            <span class="input-group-text" id="">Upload</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                                </div>
+                            </div>
+                            <!-- /.card-body -->
+
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- /.card -->
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</div>
+

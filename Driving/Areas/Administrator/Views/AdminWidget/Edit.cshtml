@@ -1,0 +1,51 @@
+﻿@model Driving.Models.Entity.Widget
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Administrator/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="content-wrapper">
+
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-md-12">
+                    <!-- general form elements -->
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">Widget</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <!-- form start -->
+                        <form method="post" action="/Administrator/AdminWidget/Edit" role="form">
+                            <input type="hidden" name="Id" value="@Model.Id"/>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Name</label>
+                                    <input name="Name" value="@Model.Name" type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Url</label>
+                                    <input name="Url" value="@Model.Url" type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Url">
+                                </div>
+                            </div>
+                            <!-- /.card-body -->
+
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- /.card -->
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</div>
+

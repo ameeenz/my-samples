@@ -1,0 +1,59 @@
+﻿@model System.Collections.Generic.IEnumerable<Driving.Models.Entity.Widget>
+@{
+    ViewBag.Title = "WidgetList";
+    Layout = "~/Areas/Administrator/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="content-wrapper">
+
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-md-12">
+                    <!-- general form elements -->
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">Roles</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <!-- form start -->
+                        <form method="post" action="/Administrator/Roles/WidgetList" role="form">
+                            <input type="hidden" value="@ViewBag.myRole" name="Id"/>
+                            <div class="card-body">
+                                @foreach (var item in Model)
+                                {
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">@item.Name:</label>
+                                    @if (Driving.Tools.Translate.RoleInWidget(ViewBag.myRole, item.Id))
+                                    {
+
+                                        <input name="SelectedWidget" checked type="checkbox" id="exampleInputEmail1" value="@item.Id">
+                                    }
+                                    else
+                                    {
+                                        <input name="SelectedWidget"  type="checkbox" id="exampleInputEmail1" value="@item.Id">
+                                    }
+                                </div>
+                                }
+
+                            </div>
+                            <!-- /.card-body -->
+
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- /.card -->
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</div>
+
